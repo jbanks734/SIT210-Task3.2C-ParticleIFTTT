@@ -1,3 +1,9 @@
+/******************************************************/
+//       THIS IS A GENERATED FILE - DO NOT EDIT       //
+/******************************************************/
+
+#include "Particle.h"
+#line 1 "/home/jamesbanks/Documents/Git/ParticleIFTTT/src/ParticleIFTTT.ino"
 // ------------
 // Blink an LED
 // ------------
@@ -24,6 +30,9 @@ It blinks the D7 LED on your Particle device. If you have an LED wired to D0, it
 // First, we're going to make some variables.
 // This is our "shorthand" that we'll use throughout the program:
 
+void setup();
+void loop();
+#line 27 "/home/jamesbanks/Documents/Git/ParticleIFTTT/src/ParticleIFTTT.ino"
 int led1 = D0; // Instead of writing D0 over and over again, we'll write led1
 // You'll need to wire an LED to this one to see it blink.
 
@@ -32,39 +41,11 @@ int led2 = D7; // Instead of writing D7 over and over again, we'll write led2
 
 int photoresistor = A0;
 int analogValue;
-int i = 4;
+int i = 0;
 
 // Having declared these variables, let's move on to the setup function.
 // The setup function is a standard part of any microcontroller program.
 // It runs only once when the device boots up or is reset.
-
-void light()
-{
-  while (i < 7)
-  {
-    analogValue = analogRead(photoresistor);
-    if (analogValue > 6)
-    {
-      Serial.println("highIf");
-      // Serial.println(analogValue);
-      Serial.println(i);
-      i++;
-    }
-    else
-    {
-      Serial.println("lowIf");
-      // Serial.println(analogValue);
-      Serial.println(i);
-      i--;
-    }
-    delay(2s);
-  }
-}
-
-void print()
-{
-  Serial.println("BreakLow");
-}
 
 void setup()
 {
@@ -85,21 +66,25 @@ void setup()
 
 void loop()
 {
+  analogValue = analogRead(photoresistor);
 
-  light();
-
-  Serial.println("BreakOut");
-
-  if (i == 7)
+  while (i < 5)
   {
-    Serial.println("BreakHigh");
-  }
-  else
-  {
-    Serial.println("BreakLow");
+    if (analogValue > 6)
+    {
+      Serial.println("highIf");
+      Serial.println(analogValue);
+    }
+    else
+    {
+      Serial.println("lowIf");
+      Serial.println(analogValue);
+      i++;
+    }
+    delay(2s);
   }
 
-  i = 4;
+  Serial.println("BreakLow");
 
   delay(2s);
 }
