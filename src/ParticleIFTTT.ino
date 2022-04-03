@@ -13,11 +13,13 @@ void light()
     if (analogValue > 6)
     {
       Serial.println("IsLight");
+      Serial.println(i);
       i++;
     }
     else
     {
       Serial.println("NoLight");
+      Serial.println(i);
       i--;
     }
     delay(2s);
