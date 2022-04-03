@@ -36,10 +36,6 @@ int i = 4;
 int high = 0;
 int low = 0;
 
-// Having declared these variables, let's move on to the setup function.
-// The setup function is a standard part of any microcontroller program.
-// It runs only once when the device boots up or is reset.
-
 void light()
 {
   while (i != 0 && i != 7)
@@ -47,16 +43,12 @@ void light()
     analogValue = analogRead(photoresistor);
     if (analogValue > 6)
     {
-      Serial.println("highIf");
-      // Serial.println(analogValue);
-      Serial.println(i);
+      Serial.println("IsLight");
       i++;
     }
     else
     {
-      Serial.println("lowIf");
-      // Serial.println(analogValue);
-      Serial.println(i);
+      Serial.println("NoLight");
       i--;
     }
     delay(2s);
@@ -97,6 +89,7 @@ void loop()
     if (high == 0)
     {
       Serial.println("Notify light on");
+      Particle.publish("on", "on");
       low = 0;
       high = 1;
     }
@@ -110,6 +103,7 @@ void loop()
     if (low == 0)
     {
       Serial.println("Notify light off");
+      Particle.publish("off", "off");
       high = 0;
       low = 1;
     }
