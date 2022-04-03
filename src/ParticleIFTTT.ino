@@ -33,6 +33,8 @@ int led2 = D7; // Instead of writing D7 over and over again, we'll write led2
 int photoresistor = A0;
 int analogValue;
 int i = 4;
+int high = 0;
+int low = 0;
 
 // Having declared these variables, let's move on to the setup function.
 // The setup function is a standard part of any microcontroller program.
@@ -40,7 +42,7 @@ int i = 4;
 
 void light()
 {
-  while (i < 7)
+  while (i != 0 && i != 7)
   {
     analogValue = analogRead(photoresistor);
     if (analogValue > 6)
@@ -92,11 +94,29 @@ void loop()
 
   if (i == 7)
   {
-    Serial.println("BreakHigh");
+    if (high == 0)
+    {
+      Serial.println("Notify light on");
+      low = 0;
+      high = 1;
+    }
+    else
+    {
+      Serial.println("Already Notified light on");
+    }
   }
   else
   {
-    Serial.println("BreakLow");
+    if (low == 0)
+    {
+      Serial.println("Notify light off");
+      high = 0;
+      low = 1;
+    }
+    else
+    {
+      Serial.println("Already Notified light off");
+    }
   }
 
   i = 4;
