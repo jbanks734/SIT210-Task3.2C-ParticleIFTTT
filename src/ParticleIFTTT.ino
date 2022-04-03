@@ -58,13 +58,15 @@ void loop()
 {
   analogValue = analogRead(photoresistor);
 
-  if (analogValue > 15)
+  if (analogValue > 6)
   {
     Serial.println("high");
+    Serial.println(analogValue);
   }
   else
   {
     Serial.println("low");
+    Serial.println(analogValue);
   }
-  delay(10s);
+  delay(2s);
 }
