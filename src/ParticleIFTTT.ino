@@ -26,16 +26,8 @@ void light()
   }
 }
 
-void setup()
+void getlight()
 {
-
-  Serial.begin(9600);
-  pinMode(photoresistor, INPUT);
-}
-
-void loop()
-{
-
   light();
 
   Serial.println("BreakOut");
@@ -72,4 +64,16 @@ void loop()
   i = 4;
 
   delay(2s);
+}
+
+void setup()
+{
+
+  Serial.begin(9600);
+  pinMode(photoresistor, INPUT);
+}
+
+void loop()
+{
+  getlight();
 }
