@@ -37,7 +37,7 @@ void getlight()
     if (high == 0)
     {
       Serial.println("Notify light on");
-      Particle.publish("on", "on");
+      // Particle.publish("on", "on");
       low = 0;
       high = 1;
     }
@@ -51,7 +51,7 @@ void getlight()
     if (low == 0)
     {
       Serial.println("Notify light off");
-      Particle.publish("off", "off");
+      // Particle.publish("off", "off");
       high = 0;
       low = 1;
     }
